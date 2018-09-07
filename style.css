@@ -27,6 +27,24 @@ header h1 {
   height: 500px;
   left: 100px;
   top: 40px;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
   border-radius: 3px;
+  padding: 10px;
+  background-color: #3D4468;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+}
+.box_head {
+  display: flex;
+  /* padding: 10px 0px; */
+}
+.box_head input[type=text] {
+  padding: 10px 10px;
+  border:  1px solid #B0C0BC;
+  border-radius: 3px;
+  width: 100%;
+}
+.box_head button {
+  padding: 10px 15px;
+  background-color: #B0C0BC;
+  border:  1px solid #B0C0BC;
 }
