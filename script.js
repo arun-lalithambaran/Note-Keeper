@@ -1,23 +1,43 @@
 var dataList = [];
+var dataString = "";
+let k = 0;
 function addNote() {
   this.noteText = document.getElementById("noteText").value;
-  dataList = window.localStorage.getItem("data");
+  // dataList = window.localStorage.getItem("data");
   if(this.noteText != "") {
     dataList.push(this.noteText);
+    dataString = arrToJson(dataList);
     document.getElementById("noteText").value = "";
-    window.localStorage.setItem("data", dataList);
+    window.localStorage.setItem("data", dataString);
+    listNotes();
   } else {
     alert("Empty Text!");
   }
 }
 function listNotes() {
   let dataList2 = window.localStorage.getItem("data");
-  let box = document.getElementById("box_body");
-  let node = document.createElement("div");
-  console.log(dataList2[1]);
-  for(let i = 0; i < dataList.length; i++) {
-    node.setAttribute("class", "item_outer");
-    node.innerHTML = "<div class='item'><div class='circle_dot'></div><span>"+dataList2[i]+"</span></div>";
-    box.append(node);
+  if(dataList2 != null) {
+    let jsonData = JSON.parse(dataList2);
+    console.log(jsonData[0]);
+    for(; k < jsonData[0]; k++) {
+      dataList.push(jsonData[1][k]);
+      let box = document.getElementById("box_body");
+      let node = document.createElement("div");
+      node.setAttribute("class", "item_outer");
+      node.innerHTML = "<div class='item'><div class='circle_dot'></div><span>"+jsonData[1][k]+"</span></div>";
+      box.append(node);
+    }
   }
+}
+function arrToJson(arrData) {
+  let jsonData = '{"0" : ' + '"' + arrData.length +'"' + ', "1" : {';
+  for(let i = 0; i < arrData.length; i++) {
+    jsonData += '"'+i+'" : ' + '"'+arrData[i]+'"';
+    if(i != arrData.length - 1) {
+      jsonData += ", ";
+    }
+  }
+  jsonData += "}}";
+  console.log(jsonData);
+  return jsonData;
 }
