@@ -56,7 +56,8 @@ header h1 {
 }
 .item {
   position: relative;
-  background-color: #DBDBDB;
+  /* background-color: #DBDBDB; */
+  background-color: rgba(250, 250, 250, 0.7);
   padding: 10px 0px;
   border-radius: 3px;
   color: #3D4468;

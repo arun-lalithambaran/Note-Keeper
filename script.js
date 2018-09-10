@@ -1,29 +1,23 @@
-let dataList = [];
+var dataList = [];
 function addNote() {
   this.noteText = document.getElementById("noteText").value;
-  dataList.push(this.noteText);
-  let box = document.getElementById("box_body");
-  let node = document.createElement("div");
-  node.setAttribute("class", "item_outer");
-  node.innerHTML = "<div class='item'><div class='circle_dot'></div><span>"+this.noteText+"</span></div>";
-  console.log(box);
-  box.append(node);
-  document.getElementById("noteText").value = "";
+  dataList = window.localStorage.getItem("data");
+  if(this.noteText != "") {
+    dataList.push(this.noteText);
+    document.getElementById("noteText").value = "";
+    window.localStorage.setItem("data", dataList);
+  } else {
+    alert("Empty Text!");
+  }
 }
 function listNotes() {
+  let dataList2 = window.localStorage.getItem("data");
   let box = document.getElementById("box_body");
   let node = document.createElement("div");
-  node.setAttribute("class", "item_outer");
-  node.innerHTML = "<div class='item'><div class='circle_dot'></div><span>This is a to do item.</span></div>";
-  console.log(box);
-  box.append(node);
-
-
-  if(dataList.length > 0) {
-    for(let i = 0; i < dataList.length; i++) {
-      // box.innerHTML = "<div class='item_outer'><div class='item'><div class='circle_dot'></div><span>This is a to do item.</span></div></div>";
-    }
-  } else {
-    console.log("No Elements");
+  console.log(dataList2[1]);
+  for(let i = 0; i < dataList.length; i++) {
+    node.setAttribute("class", "item_outer");
+    node.innerHTML = "<div class='item'><div class='circle_dot'></div><span>"+dataList2[i]+"</span></div>";
+    box.append(node);
   }
 }
