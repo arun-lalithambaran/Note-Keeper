@@ -1,12 +1,14 @@
 var dataList = [];
-var dataString = "";
+var dataString = "{{}}";
 let k = 0;
+let dataCount = 0;
 function addNote() {
   this.noteText = document.getElementById("noteText").value;
   // dataList = window.localStorage.getItem("data");
   if(this.noteText != "") {
-    dataList.push(this.noteText);
-    dataString = arrToJson(dataList);
+    // dataList.push(this.noteText);
+    dataStringGenerator(this.noteText);
+    // dataString = arrToJson(dataList);
     document.getElementById("noteText").value = "";
     window.localStorage.setItem("data", dataString);
     listNotes();
@@ -15,7 +17,7 @@ function addNote() {
   }
 }
 function listNotes() {
-  let dataList2 = window.localStorage.getItem("data");
+  dataString = window.localStorage.getItem("data");
   if(dataList2 != null) {
     let jsonData = JSON.parse(dataList2);
     console.log(jsonData);
@@ -40,4 +42,7 @@ function arrToJson(arrData) {
   jsonData += "}}";
   // console.log(jsonData);
   return jsonData;
+}
+function dataStringGenerator(data) {
+
 }
