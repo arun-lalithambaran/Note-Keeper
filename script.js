@@ -18,8 +18,8 @@ function listNotes() {
   let dataList2 = window.localStorage.getItem("data");
   if(dataList2 != null) {
     let jsonData = JSON.parse(dataList2);
-    console.log(jsonData[0]);
-    for(; k < jsonData[0]; k++) {
+    console.log(jsonData);
+    for( ; k < jsonData[0]; k++) {
       dataList.push(jsonData[1][k]);
       let box = document.getElementById("box_body");
       let node = document.createElement("div");
@@ -38,6 +38,6 @@ function arrToJson(arrData) {
     }
   }
   jsonData += "}}";
-  console.log(jsonData);
+  // console.log(jsonData);
   return jsonData;
 }
