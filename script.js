@@ -20,6 +20,8 @@ function addNotes() {
     notes.push(new ToDoNote(note));
     localStorage.noteList = JSON.stringify(notes);
     listNotes();
+  } else {
+    alert("Please Type Anything!");
   }
 }
 
@@ -50,14 +52,12 @@ function removeNote(note) {
   notes[note.parentNode.firstChild.value].removed = true;
   localStorage.noteList = JSON.stringify(notes);
   note.parentNode.style = "display: none";
-  // noteCount--;
+  refresh();
 }
 function refresh() {
-  let count = 0;
   for(var i = 0; i < notes.length; i++) {
     if(notes[i].removed === true) {
       notes.splice(i, 1);
-      count++;
       console.log("item removed");
     }
   }
