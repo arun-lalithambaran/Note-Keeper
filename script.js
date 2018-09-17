@@ -1,82 +1,63 @@
 var notes = [];
 var savedNotes;
 var noteCount = 0;
+// var timer = setInterval(refresh, 30000);
+window.addEventListener("load", function() {
+  listNotes();
+  if(savedNotes != null) {
+    for(let i = 0; i < savedNotes.length; i++) {
+      notes.push(savedNotes[i]);
+    }
+  }
+});
+
 function addNotes() {
   let note = document.getElementById("noteText").value;
   document.getElementById("noteText").value = "";
 
   if(note != "") {
     notes.push(new ToDoNote(note));
-    listNotes();
     localStorage.noteList = JSON.stringify(notes);
+    listNotes();
   }
 }
 
 function listNotes() {
-  savedNotes = JSON.parse(localStorage.noteList);
-  for( ; noteCount < savedNotes.length; noteCount++) {
-    // savedNotes[noteCount].show();
+  if(localStorage.noteList != null) {
+    savedNotes = JSON.parse(localStorage.noteList);
+    for( ; noteCount < savedNotes.length; noteCount++) {
+      if(savedNotes[noteCount].removed === false) {
+        showNote(savedNotes[noteCount], noteCount);
+      }
+    }
   }
 }
 
 function ToDoNote(noteText) {
   this.noteText = noteText;
   this.status = false;
+  this.removed = false;
 }
-ToDoNote.prototype.show = function() {
+function showNote(note, noteId) {
   let box = document.getElementById("box_body");
   let node = document.createElement("div");
   node.setAttribute("class", "item_outer");
-  node.innerHTML = "<div class='item'><div class='circle_dot'></div><span>"+this.noteText+"</span></div>";
+  node.innerHTML = "<div class='item'><input type='hidden' value='"+noteId+"'><div class='circle_dot'></div><span>"+note.noteText+"</span><div class='close_btn' value='hello' onclick='removeNote(this)'><span>x</span></div></div>";
   box.append(node);
 }
-
-
-// var dataList = [];
-// var dataString = "{{}}";
-// let k = 0;
-// let dataCount = 0;
-// function addNote() {
-//   this.noteText = document.getElementById("noteText").value;
-//   // dataList = window.localStorage.getItem("data");
-//   if(this.noteText != "") {
-//     // dataList.push(this.noteText);
-//     dataStringGenerator(this.noteText);
-//     // dataString = arrToJson(dataList);
-//     document.getElementById("noteText").value = "";
-//     window.localStorage.setItem("data", dataString);
-//     listNotes();
-//   } else {
-//     alert("Empty Text!");
-//   }
-// }
-// function listNotes() {
-//   dataString = window.localStorage.getItem("data");
-//   if(dataList2 != null) {
-//     let jsonData = JSON.parse(dataList2);
-//     console.log(jsonData);
-//     for( ; k < jsonData[0]; k++) {
-//       dataList.push(jsonData[1][k]);
-//       let box = document.getElementById("box_body");
-//       let node = document.createElement("div");
-//       node.setAttribute("class", "item_outer");
-//       node.innerHTML = "<div class='item'><div class='circle_dot'></div><span>"+jsonData[1][k]+"</span></div>";
-//       box.append(node);
-//     }
-//   }
-// }
-// function arrToJson(arrData) {
-//   let jsonData = '{"0" : ' + '"' + arrData.length +'"' + ', "1" : {';
-//   for(let i = 0; i < arrData.length; i++) {
-//     jsonData += '"'+i+'" : ' + '"'+arrData[i]+'"';
-//     if(i != arrData.length - 1) {
-//       jsonData += ", ";
-//     }
-//   }
-//   jsonData += "}}";
-//   // console.log(jsonData);
-//   return jsonData;
-// }
-// function dataStringGenerator(data) {
-//
-// }
+function removeNote(note) {
+  notes[note.parentNode.firstChild.value].removed = true;
+  localStorage.noteList = JSON.stringify(notes);
+  note.parentNode.style = "display: none";
+  // noteCount--;
+}
+function refresh() {
+  for(var i = 0; i < notes.length; i++) {
+    if(notes[i].removed === true) {
+      notes.splice(i, 1);
+      console.log("item removed");
+    }
+  }
+  localStorage.noteList = JSON.stringify(notes);
+  listNotes();
+}

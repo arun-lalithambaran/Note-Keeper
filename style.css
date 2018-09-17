@@ -76,7 +76,7 @@ header h1 {
 }
 
 
-.circle_dot {
+.circle_dot, .close_btn {
   width: 20px;
   height: 20px;
   display: inline-block;
@@ -85,6 +85,19 @@ header h1 {
   background-color: #3D4468;
   vertical-align: top;
   margin-left: 10px;
+}
+.close_btn {
+  position: absolute;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.3);
+}
+.close_btn:hover {
+  background: rgba(150, 0, 0, 0.3);
+}
+.close_btn span {
+  margin: 0;
+  position: relative;
+  left: 6px;
 }
 
 @keyframes itemHover {
