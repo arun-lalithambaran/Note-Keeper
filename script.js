@@ -52,12 +52,16 @@ function removeNote(note) {
   // noteCount--;
 }
 function refresh() {
+  let count = 0;
   for(var i = 0; i < notes.length; i++) {
     if(notes[i].removed === true) {
       notes.splice(i, 1);
+      count++;
       console.log("item removed");
     }
   }
   localStorage.noteList = JSON.stringify(notes);
+  noteCount -= count;
   listNotes();
+  console.log("Refreshed");
 }
