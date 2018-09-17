@@ -1,4 +1,5 @@
 var notes = [];
+var savedNotes;
 var noteCount = 0;
 function addNotes() {
   let note = document.getElementById("noteText").value;
@@ -7,29 +8,27 @@ function addNotes() {
   if(note != "") {
     notes.push(new ToDoNote(note));
     listNotes();
+    localStorage.noteList = JSON.stringify(notes);
   }
 }
 
 function listNotes() {
-  for( ; noteCount < notes.length; noteCount++) {
-    notes[noteCount].show();
+  savedNotes = JSON.parse(localStorage.noteList);
+  for( ; noteCount < savedNotes.length; noteCount++) {
+    // savedNotes[noteCount].show();
   }
 }
 
 function ToDoNote(noteText) {
   this.noteText = noteText;
   this.status = false;
-
-
-  this.show = function() {
-    console.log(this.noteText);
-    let box = document.getElementById("box_body");
-    let node = document.createElement("div");
-    node.setAttribute("class", "item_outer");
-    node.innerHTML = "<div class='item'><div class='circle_dot'></div><span>"+this.noteText+"</span></div>";
-    box.append(node);
-  }
-
+}
+ToDoNote.prototype.show = function() {
+  let box = document.getElementById("box_body");
+  let node = document.createElement("div");
+  node.setAttribute("class", "item_outer");
+  node.innerHTML = "<div class='item'><div class='circle_dot'></div><span>"+this.noteText+"</span></div>";
+  box.append(node);
 }
 
 
