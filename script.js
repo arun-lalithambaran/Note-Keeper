@@ -1,6 +1,7 @@
 var notes = [];
 var savedNotes;
 var noteCount = 0;
+var box;
 // var timer = setInterval(refresh, 30000);
 window.addEventListener("load", function() {
   listNotes();
@@ -39,7 +40,7 @@ function ToDoNote(noteText) {
   this.removed = false;
 }
 function showNote(note, noteId) {
-  let box = document.getElementById("box_body");
+  box = document.getElementById("box_body");
   let node = document.createElement("div");
   node.setAttribute("class", "item_outer");
   node.innerHTML = "<div class='item'><input type='hidden' value='"+noteId+"'><div class='circle_dot'></div><span>"+note.noteText+"</span><div class='close_btn' value='hello' onclick='removeNote(this)'><span>x</span></div></div>";
@@ -61,7 +62,8 @@ function refresh() {
     }
   }
   localStorage.noteList = JSON.stringify(notes);
-  noteCount -= count;
+  box.innerHTML = "";
+  noteCount = 0;
   listNotes();
   console.log("Refreshed");
 }
