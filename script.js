@@ -96,9 +96,9 @@ function filterNotes(mode) {
     }
     var fbtn = document.getElementsByClassName("tab")[1];
     if(mode) {
-      fbtn.innerHTML = "Incomplete Tasks";
+      fbtn.innerHTML = "Incompleted Tasks";
     } else {
-      fbtn.innerHTML = "Complete Tasks";
+      fbtn.innerHTML = "Completed Tasks";
     }
     mode = mode != true;
     var f = "filterNotes(" + mode + ")";
