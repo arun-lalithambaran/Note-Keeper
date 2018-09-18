@@ -2,7 +2,14 @@ var notes = [];
 var savedNotes;
 var noteCount = 0;
 var box;
+var input = document.getElementById("noteText");
+var saveBtn = document.getElementById("addNoteBtn");
 // var timer = setInterval(refresh, 30000);
+input.addEventListener("keyup", function(event) {
+  if(event.keyCode == 13) {
+    saveBtn.click();
+  }
+});
 window.addEventListener("load", function() {
   listNotes();
   if(savedNotes != null) {
@@ -13,7 +20,7 @@ window.addEventListener("load", function() {
 });
 
 function addNotes() {
-  let note = document.getElementById("noteText").value;
+  let note = input.value;
   document.getElementById("noteText").value = "";
 
   if(note != "") {
