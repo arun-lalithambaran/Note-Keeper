@@ -1,33 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Note Keeper</title>
+  <title>To-Do Keeper</title>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
   <div class="container">
     <header>
-      <h1>Note Keeper</h1>
+      <h1>To-Do Keeper</h1>
     </header>
     <div class="box">
       <div class="box_head">
         <input type="text" id="noteText" placeholder="Take a note.." autofocus>
         <button onclick="addNotes()" type="button" id="addNoteBtn">Add</button>
       </div>
-      
-      <!-- Under construction -->
+      <div id="box_body" class="box_body"></div>
       <div class="box_nav">
-        <div class="tab">tab 1</div>
-        <div class="tab">tab 2</div>
-      </div>
-      <!-- Under construction -->
-
-      <div id="box_body" class="box_body">
-
+        <div onclick="refresh()" class="tab right-border">All Tasks</div>
+        <div onclick="filterNotes(true)" class="tab">Completed Tasks</div>
       </div>
     </div>
-</div>
-<script src="script.js"></script>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>

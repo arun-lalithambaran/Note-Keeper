@@ -1,7 +1,7 @@
 var notes = [];
 var savedNotes;
 var noteCount = 0;
-var box;
+var box =  document.getElementById("box_body");;
 var input = document.getElementById("noteText");
 var saveBtn = document.getElementById("addNoteBtn");
 // var timer = setInterval(refresh, 30000);
@@ -49,7 +49,6 @@ function ToDoNote(noteText) {
   this.removed = false;
 }
 function showNote(note, noteId) {
-  box = document.getElementById("box_body");
   let node = document.createElement("div");
   var checkClass = "";
   if(note.status === true) checkClass = " green_dot";
@@ -86,4 +85,23 @@ function statusToggle(note) {
   }
   localStorage.noteList = JSON.stringify(notes);
   refresh();
+}
+function filterNotes(mode) {
+  if(savedNotes != null) {
+    box.innerHTML = "";
+    for(var i = 0; i < savedNotes.length; i++) {
+      if(savedNotes[i].status === mode) {
+        showNote(savedNotes[i], i);
+      }
+    }
+    var fbtn = document.getElementsByClassName("tab")[1];
+    if(mode) {
+      fbtn.innerHTML = "Incomplete Tasks";
+    } else {
+      fbtn.innerHTML = "Complete Tasks";
+    }
+    mode = mode != true;
+    var f = "filterNotes(" + mode + ")";
+    fbtn.setAttribute("onclick", f);
+  }
 }
