@@ -44,8 +44,10 @@ function ToDoNote(noteText) {
 function showNote(note, noteId) {
   box = document.getElementById("box_body");
   let node = document.createElement("div");
-  node.setAttribute("class", "item_outer");
-  node.innerHTML = "<div class='item'><input type='hidden' value='"+noteId+"'><div class='circle_dot'></div><span>"+note.noteText+"</span><div class='close_btn' value='hello' onclick='removeNote(this)'><span>x</span></div></div>";
+  var checkClass = "";
+  if(note.status === true) checkClass = " green_dot";
+  node.setAttribute("class", "item_outer"+checkClass);
+  node.innerHTML = "<div class='item'><input type='hidden' value='"+noteId+"'><div onclick='statusToggle(this)' class='circle_dot'></div><span class='text'>"+note.noteText+"</span><div class='close_btn' onclick='removeNote(this)'><span>x</span></div></div>";
   box.append(node);
 }
 function removeNote(note) {
@@ -66,4 +68,15 @@ function refresh() {
   noteCount = 0;
   listNotes();
   console.log("Refreshed");
+}
+function statusToggle(note) {
+  var id = note.parentNode.firstChild.value;
+  console.log(id);
+  if(notes[id].status === true) {
+    notes[id].status = false;
+  } else {
+    notes[id].status = true;
+  }
+  localStorage.noteList = JSON.stringify(notes);
+  refresh();
 }

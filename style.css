@@ -86,6 +86,12 @@ header h1 {
   vertical-align: top;
   margin-left: 10px;
 }
+.green_dot .circle_dot{
+  background-color: #3AB795;
+}
+.green_dot .text {
+  text-decoration: line-through;
+}
 .close_btn {
   position: absolute;
   right: 10px;
