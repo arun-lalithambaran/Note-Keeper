@@ -9,6 +9,10 @@ body {
   background: #40476D;
 }
 .container {
+  background: url("../images/to_do_icon.png");
+  background-repeat: no-repeat;
+  background-size: 500px auto;
+  background-position: 600px 150px;
 
 }
 header {
@@ -23,6 +27,7 @@ header h1 {
 }
 .box {
   position: relative;
+  display: inline-block;
   width: 400px;
   min-height: 500px;
   left: 100px;
