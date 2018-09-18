@@ -23,7 +23,16 @@ header {
 header h1 {
   margin: 0;
   color: #fff;
+  margin-left: 10px;
+  display: inline-block;
+}
+header img {
+  width: auto;
+  height: 27px;
+  position: relative;
+  top: 2px;
   margin-left: 30px;
+  display: inline-block;
 }
 .box {
   position: relative;
@@ -135,7 +144,7 @@ input[type=text]:focus, button:focus {
   color: #fff;
 }
 .tab:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(0, 0, 0, 0.08);
 }
 .right-border {
   border-right: 1px solid gray;
