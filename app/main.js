@@ -8,11 +8,15 @@
   var saveBtn = document.getElementById("addNoteBtn");
   var tabs = document.getElementsByClassName("tab");
   var filter  = localStorage.filterStat;
+  
   if(filter === "true") filter = true; else if(filter === "false") filter = false; else filter = null;
+
   function ToDoNote(noteText) {
   this.noteText = noteText;
   this.status   = false;
   }
+
+  //  Create and push to-do objects
   function addNotes() {
     let note    = input.value;
     input.value = "";
@@ -25,6 +29,8 @@
       alert("Please Type Anything!");
     }
   }
+
+  //  Retrive data from local storage
   function getData() {
     if(localStorage.getItem("to_do_data") != null) {
       return JSON.parse(localStorage.getItem("to_do_data"));
@@ -32,9 +38,13 @@
       return [];
     }
   }
+
+  //  Save data to local storage
   function saveData() {
     localStorage.setItem("to_do_data", JSON.stringify(notes));
   }
+
+  //  Loops through note array
   function listNotes() {
     filter = null;
     tabs[1].setAttribute("class", "tab");
@@ -47,6 +57,8 @@
     }
   }
 }
+
+//  Creates individual note elements and appends it to HTML page
 function showNote(note, noteId) {
   let node = document.createElement("div");
   var checkClass = "";
@@ -55,11 +67,13 @@ function showNote(note, noteId) {
   node.innerHTML = "<div class='item'><div onclick='statusToggle("+noteId+")' class='circle_dot'></div><span class='text'>"+note.noteText+"</span><div class='close_btn' onclick='removeNote("+noteId+")'><span>x</span></div></div>";
   box.append(node);
 }
+
 function removeNote(i) {
   notes.splice(i, 1);
   saveData();
   if(filter != null) filterNotes(filter); else listNotes();
 }
+
 function statusToggle(i) {
   if(notes[i].status === true) {
     notes[i].status = false;
@@ -69,6 +83,7 @@ function statusToggle(i) {
   saveData();
   if(filter != null) filterNotes(filter); else listNotes();
 }
+
 function filterNotes(method) {
   filter = method;
   box.innerHTML = "";
@@ -84,12 +99,15 @@ function filterNotes(method) {
   tabs[0].setAttribute("class", "tab");
   tabs[1].setAttribute("class", "tab activeTab");
 }
+
 if(filter != null) filterNotes(filter); else listNotes();
+
 input.addEventListener("keyup", function(event) {
   if(event.keyCode == 13) {
     saveBtn.click();
   }
 });
+
 window.addEventListener("beforeunload", function() {
   localStorage.setItem("filterStat", filter);
 });
