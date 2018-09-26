@@ -3,7 +3,7 @@
 * @author       : Arun Lalithambaran
 */
   var notes   = getData();
-  var box     =  document.getElementById("box_body");;
+  var box     =  document.getElementById("box_body");
   var input   = document.getElementById("noteText");
   var saveBtn = document.getElementById("addNoteBtn");
   var tabs = document.getElementsByClassName("tab");
@@ -95,7 +95,7 @@ function filterNotes(method) {
   }
   method = method != true;
   tabs[1].setAttribute("onclick", "filterNotes("+method+")");
-  if(method == true) tabs[1].innerHTML = "Completed Tasks"; else tabs[1].innerHTML = "Incompleted Tasks";
+  if(method == true) tabs[1].innerHTML = "Incompleted Tasks"; else tabs[1].innerHTML = "Completed Tasks";
   tabs[0].setAttribute("class", "tab");
   tabs[1].setAttribute("class", "tab activeTab");
 }
