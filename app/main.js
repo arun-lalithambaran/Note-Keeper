@@ -85,6 +85,7 @@ function statusToggle(i) {
 }
 
 function filterNotes(method) {
+  if(filter === null) method = method != true;
   filter = method;
   box.innerHTML = "";
   notes = getData();
