@@ -7,6 +7,7 @@ html, body {
 }
 body {
   background: #40476D;
+  user-select: none;
 }
 .container {
   background: url("../images/to_do_icon.png");
@@ -79,7 +80,7 @@ input[type=text]:focus, button:focus {
   color: #3D4468;
   overflow: hidden;
   margin-bottom: 15px;
-  animation-duration: 1s;
+  animation-duration: 0.1s;
   animation-fill-mode: both;
 }
 .item_outer:hover .item{
@@ -124,7 +125,7 @@ input[type=text]:focus, button:focus {
 
 @keyframes itemHover {
   0% {transform: translatex(0px) translateY(0px) scale(1);}
-  100% {transform: translatex(5px) translateY(-5px) scale(1.01);}
+  100% {transform: translatex(2px) translateY(-2px) scale(1.01);}
 }
 
 .box_nav {
@@ -143,9 +144,12 @@ input[type=text]:focus, button:focus {
   cursor: pointer;
   color: #fff;
 }
-.tab:hover {
+/*.tab:hover {
   background: rgba(0, 0, 0, 0.08);
-}
+}*/
 .right-border {
   border-right: 1px solid gray;
+}
+.activeTab {
+  background: rgba(0, 0, 0, 0.1);
 }
