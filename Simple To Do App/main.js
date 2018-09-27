@@ -60,3 +60,8 @@ function remove(id) {
   taskList.splice(id, 1);
   store(taskList);
 }
+function filter() {
+  var ul = document.getElementById("taskList");
+  ul.innerHTML = "";
+}
+

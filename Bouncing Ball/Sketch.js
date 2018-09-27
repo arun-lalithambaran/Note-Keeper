@@ -5,12 +5,12 @@ function populate(x, y) {
 function setup() {
   var cnv = createCanvas(window.innerWidth, window.innerHeight);
   cnv.canvas.setAttribute("class", "canvas");
-  for(var i = 0; i < 1; i++) {
+  for(var i = 0; i < 20; i++) {
     b.push(new Ball(random(width), random(height)));
   }
 }
 function draw() {
-  background(250);
+  background(64, 71, 109);
   for(var i = 0; i < b.length; i++) {
     b[i].show();
     b[i].update();
