@@ -1,0 +1,155 @@
+* {
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #40476D;
+  user-select: none;
+}
+.container {
+  background: url("../images/to_do_icon.png");
+  background-repeat: no-repeat;
+  background-size: 500px auto;
+  background-position: 600px 150px;
+
+}
+header {
+  padding: 10px 0px;
+  border-bottom: 1px solid #232D63;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+}
+header h1 {
+  margin: 0;
+  color: #fff;
+  margin-left: 10px;
+  display: inline-block;
+}
+header img {
+  width: auto;
+  height: 27px;
+  position: relative;
+  top: 2px;
+  margin-left: 30px;
+  display: inline-block;
+}
+.box {
+  position: relative;
+  display: inline-block;
+  width: 400px;
+  min-height: 500px;
+  left: 100px;
+  top: 40px;
+  border-radius: 3px;
+  padding: 10px;
+  padding-bottom: 30px;
+  margin-bottom: 50px;
+  background-color: #3D4468;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+}
+.box_head {
+  display: flex;
+}
+.box_head input[type=text] {
+  padding: 10px 10px;
+  border:  1px solid #B0C0BC;
+  border-radius: 3px;
+  width: 100%;
+}
+input[type=text]:focus, button:focus {
+  outline: none;
+}
+.box_head button {
+  padding: 10px 15px;
+  background-color: #B0C0BC;
+  border:  1px solid #B0C0BC;
+}
+.box_body {
+  padding-top: 30px;
+}
+.item_outer {
+  cursor: default;
+}
+.item {
+  position: relative;
+  background-color: rgba(250, 250, 250, 0.7);
+  padding: 10px 0px;
+  border-radius: 3px;
+  color: #3D4468;
+  overflow: hidden;
+  margin-bottom: 15px;
+  animation-duration: 0.1s;
+  animation-fill-mode: both;
+}
+.item_outer:hover .item{
+  animation-name: itemHover;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+}
+.item span {
+  margin-left: 10px;
+  vertical-align: top;
+}
+
+
+.circle_dot, .close_btn {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  border-radius: 50%;
+  position: relative;
+  background-color: #3D4468;
+  vertical-align: top;
+  margin-left: 10px;
+}
+.green_dot .circle_dot{
+  background-color: #3AB795;
+}
+.green_dot .text {
+  text-decoration: line-through;
+}
+.close_btn {
+  position: absolute;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.3);
+}
+.close_btn:hover {
+  background: rgba(150, 0, 0, 0.3);
+}
+.close_btn span {
+  margin: 0;
+  position: relative;
+  left: 6px;
+}
+
+@keyframes itemHover {
+  0% {transform: translatex(0px) translateY(0px) scale(1);}
+  100% {transform: translatex(2px) translateY(-2px) scale(1.01);}
+}
+
+.box_nav {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  left: 0px;
+  text-align: center;
+  box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.1);
+}
+.tab {
+  width: 49%;
+  height: 30px;
+  padding-top: 5px;
+  display: inline-block;
+  cursor: pointer;
+  color: #fff;
+}
+/*.tab:hover {
+  background: rgba(0, 0, 0, 0.08);
+}*/
+.right-border {
+  border-right: 1px solid gray;
+}
+.activeTab {
+  background: rgba(0, 0, 0, 0.1);
+}
