@@ -47,8 +47,8 @@
   //  Loops through note array
 function listNotes() {
   filter = null;
-  tabs[1].setAttribute("class", "tab");
-  tabs[0].setAttribute("class", "tab activeTab");
+  $(tabs[1]).attr("class", "tab");
+  $(tabs[0]).attr("class", "tab activeTab");
   box.html("");
   notes = getData();
   if(notes.length > 0) {
@@ -60,11 +60,11 @@ function listNotes() {
 
 //  Creates individual note elements and appends it to HTML page
 function showNote(note, noteId) {
-  let node = document.createElement("div");
+  let node = $("<div></div>");
   var checkClass = "";
   if(note.status === true) checkClass = " green_dot";
-  node.setAttribute("class", "item_outer"+checkClass);
-  node.innerHTML = "<div class='item'><div onclick='statusToggle("+noteId+")' class='circle_dot'></div><span class='text'>"+note.noteText+"</span><div class='close_btn' onclick='removeNote("+noteId+")'><span>x</span></div></div>";
+  node.attr("class", "item_outer"+checkClass);
+  node.html("<div class='item'><div onclick='statusToggle("+noteId+")' class='circle_dot'></div><span class='text'>"+note.noteText+"</span><div class='close_btn' onclick='removeNote("+noteId+")'><span>x</span></div></div>");
   box.append(node);
 }
 
@@ -95,10 +95,10 @@ function filterNotes(method) {
     }
   }
   method = method != true;
-  tabs[1].setAttribute("onclick", "filterNotes("+method+")");
-  if(method == true) tabs[1].innerHTML = "Incompleted Tasks"; else tabs[1].innerHTML = "Completed Tasks";
-  tabs[0].setAttribute("class", "tab");
-  tabs[1].setAttribute("class", "tab activeTab");
+  $(tabs[1]).attr("onclick", "filterNotes("+method+")");
+  if(method == true) $(tabs[1]).html("Incompleted Tasks"); else $(tabs[1]).html("Completed Tasks");
+  $(tabs[0]).attr("class", "tab");
+  $(tabs[1]).attr("class", "tab activeTab");
 }
 
 if(filter != null) filterNotes(filter); else listNotes();
@@ -108,7 +108,9 @@ input.keyup(function(event) {
     saveBtn.click();
   }
 });
-
+// $(window).unload(function() {
+//   localStorage.setItem("filterStat", filter);
+// });
 window.addEventListener("beforeunload", function() {
   localStorage.setItem("filterStat", filter);
 });
